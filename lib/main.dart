@@ -34,10 +34,9 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scorekeeper = [];
-  int question_number=0;
   void checkanswer (bool userSelectedAnswer)
   {
-    bool Correctanswer = q.QuestionSet[question_number].questionanswer;
+    bool Correctanswer = q.QuestionSet[q.question_number].questionanswer;
     if (Correctanswer == userSelectedAnswer)
       {
         scorekeeper.add(Icon(Icons.check,
@@ -49,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
           color: Colors.red,));
       }
     setState(() {
-      question_number++;
+      q.increment_question();
     });
   }
   @override
@@ -63,7 +62,7 @@ class _QuizPageState extends State<QuizPage> {
         Padding(
           padding: EdgeInsets.all(5.0),
           child: Center(
-            child: Text(q.QuestionSet[question_number].questionnumber,
+            child: Text(q.QuestionSet[q.question_number].questionnumber,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 25.0,
